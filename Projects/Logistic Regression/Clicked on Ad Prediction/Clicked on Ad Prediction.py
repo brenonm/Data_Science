@@ -210,28 +210,62 @@ sns.heatmap(data = adv.corr(), annot = True)
 # * 4) Area Income: -0.48
 # * 5) Male: -0.038
 
+# # Normalizing Variables
+
+# In[63]:
+
+
+from sklearn.preprocessing import StandardScaler
+
+
+# In[64]:
+
+
+scaler = StandardScaler()
+
+
+# In[65]:
+
+
+scaler.fit(adv[['Daily Time Spent on Site', 'Age', 'Area Income', 'Daily Internet Usage', 'Male']])
+
+
+# In[67]:
+
+
+scaled_features = scaler.transform(adv[['Daily Time Spent on Site', 'Age', 'Area Income',
+                                        'Daily Internet Usage', 'Male']])
+
+
+# In[69]:
+
+
+adv_feat = pd.DataFrame(data = scaled_features, columns = [['Daily Time Spent on Site', 'Age', 'Area Income',
+                                        'Daily Internet Usage', 'Male']])
+
+
+# In[70]:
+
+
+adv_feat.head()
+
+
 # # Training as Testing Data
 
-# In[28]:
+# In[71]:
 
 
-adv.columns
-
-
-# In[29]:
-
-
-X = adv[['Daily Time Spent on Site', 'Age', 'Area Income', 'Daily Internet Usage', 'Male']]
+X = adv_feat
 y = adv['Clicked on Ad']
 
 
-# In[30]:
+# In[72]:
 
 
 from sklearn.model_selection import train_test_split
 
 
-# In[31]:
+# In[73]:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=101)
@@ -239,19 +273,19 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 # ## Training the Model
 
-# In[32]:
+# In[74]:
 
 
 from sklearn.linear_model import LogisticRegression
 
 
-# In[33]:
+# In[75]:
 
 
 model = LogisticRegression()
 
 
-# In[34]:
+# In[76]:
 
 
 model.fit(X_train, y_train)
@@ -259,7 +293,7 @@ model.fit(X_train, y_train)
 
 # ## Predicting Test Data
 
-# In[40]:
+# In[77]:
 
 
 pred = model.predict(X_test)
@@ -267,7 +301,7 @@ pred = model.predict(X_test)
 
 # ## Evaluating the Model
 
-# In[49]:
+# In[78]:
 
 
 from sklearn.metrics import confusion_matrix, classification_report
@@ -275,7 +309,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 
 # ### Test Size = 0.2
 
-# In[48]:
+# In[79]:
 
 
 print(confusion_matrix(y_test, pred))
@@ -285,13 +319,13 @@ print(classification_report(y_test, pred))
 
 # ### Test Size = 0.25
 
-# In[50]:
+# In[80]:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=101)
 
 
-# In[51]:
+# In[81]:
 
 
 model = LogisticRegression()
@@ -305,13 +339,13 @@ print(classification_report(y_test, pred))
 
 # ### Test Size = 0.3
 
-# In[54]:
+# In[82]:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
 
 
-# In[55]:
+# In[83]:
 
 
 model = LogisticRegression()
@@ -325,13 +359,13 @@ print(classification_report(y_test, pred))
 
 # ### Test Size = 0.35
 
-# In[56]:
+# In[84]:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.35, random_state=101)
 
 
-# In[57]:
+# In[85]:
 
 
 model = LogisticRegression()
@@ -345,53 +379,10 @@ print(classification_report(y_test, pred))
 
 # ## Optimal Results
 
-# ### Test Size = 0.3
+# ### Test Size = 0.2 --> Higher Precision --> Lower False Positives --> Customer did not click, but model predicted he or she did.
 
-# In[58]:
+# * Company should choose this option for maximizing assertiveness --> E.g: Customers complaining of receiving random calls or communication he or she did not sign for.
 
+# ### Test Size = 0.3 --> Higher Recall --> Lower False Negatives --> Customer clicked, but model predicted he or she did not.
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
-
-
-# In[59]:
-
-
-model = LogisticRegression()
-model.fit(X_train, y_train)
-pred = model.predict(X_test)
-
-print(confusion_matrix(y_test, pred))
-print('\n')
-print(classification_report(y_test, pred))
-
-
-# * 93% Precision, Recall and F-1 Score indicates a very good fit for the model
-
-# # Hypothesis: Drop Male Column to increase performance
-
-# In[60]:
-
-
-X = adv[['Daily Time Spent on Site', 'Age', 'Area Income', 'Daily Internet Usage']]
-y = adv['Clicked on Ad']
-
-
-# In[61]:
-
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
-
-
-# In[62]:
-
-
-model = LogisticRegression()
-model.fit(X_train, y_train)
-pred = model.predict(X_test)
-
-print(confusion_matrix(y_test, pred))
-print('\n')
-print(classification_report(y_test, pred))
-
-
-# * No changes were observed
+# * Company should choose this option for maximizing Click-Through-Rate --> E.g: Company wishes to broaden its customer base.

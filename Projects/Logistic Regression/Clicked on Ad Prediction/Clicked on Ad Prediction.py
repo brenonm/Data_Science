@@ -250,7 +250,7 @@ adv_feat = pd.DataFrame(data = scaled_features, columns = [['Daily Time Spent on
 adv_feat.head()
 
 
-# # Training as Testing Data
+# # Training and Testing Data
 
 # In[71]:
 

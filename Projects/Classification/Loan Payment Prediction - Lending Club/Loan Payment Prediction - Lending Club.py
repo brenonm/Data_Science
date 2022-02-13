@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Random Forest Project
+# # Loan Payment Prediction - Lending Club
 # The following dataset contains data on customers that got a loan through Lending Club, a p2p platform.
 # 
 # Here are what the columns represent:

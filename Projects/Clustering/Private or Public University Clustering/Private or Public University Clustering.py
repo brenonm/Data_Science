@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Unsupervised Learning - A K Means Clustering Project
-# We will use a data frame with 777 observations on the following 18 variables from universities:
+# # Unsupervised Learning - Private or Public University?
+# We will use a data frame with 777 observations on the following 18 variables from universities in the US:
 # 
 # * Private: A factor with levels No and Yes indicating private or public university
 # * Apps: Number of applications received

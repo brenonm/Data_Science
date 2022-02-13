@@ -6,7 +6,8 @@ My projects are segmented as follows:
 * Regression
 
 Find me at:  
-🔵[LinkedIn] (https://www.linkedin.com/in/breno-marcolino/)
+🔵[LinkedIn](https://www.linkedin.com/in/breno-marcolino/)
+
 
 **_"There is nothing more deceptive than an obvious fact."_**  
 Sherlock Holmes

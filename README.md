@@ -5,4 +5,5 @@ My projects are segmented as follows:
 * Clustering
 * Regression
 ---
-!(https://miro.medium.com/max/500/1*ZhYNqU2y96_f3QkWq9oiWQ.jpeg)
+**_"There is nothing more deceptive than an obvious fact."_**  
+Sherlock Holmes

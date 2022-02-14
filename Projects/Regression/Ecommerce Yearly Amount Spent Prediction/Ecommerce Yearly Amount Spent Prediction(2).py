@@ -39,13 +39,13 @@ sns.set_style('whitegrid')
 
 # # Get the Data
 
-# In[6]:
+# In[4]:
 
 
 customers = pd.read_csv('Ecommerce Customers')
 
 
-# In[7]:
+# In[5]:
 
 
 customers.head()
@@ -53,13 +53,13 @@ customers.head()
 
 # # Variable Content
 
-# In[10]:
+# In[6]:
 
 
 customers.info()
 
 
-# In[11]:
+# In[7]:
 
 
 # numeric variables overview
@@ -68,7 +68,7 @@ customers.describe()
 
 # # Check Missing Data
 
-# In[9]:
+# In[8]:
 
 
 sns.heatmap(data = customers.isnull(), yticklabels = False, cbar = False, cmap = 'viridis' )
@@ -76,7 +76,7 @@ sns.heatmap(data = customers.isnull(), yticklabels = False, cbar = False, cmap =
 
 # # Exploratory Data Analysis
 
-# In[12]:
+# In[9]:
 
 
 customers.columns
@@ -84,7 +84,7 @@ customers.columns
 
 # ## Avg. Session Length vs Yearly Amount Spent
 
-# In[15]:
+# In[10]:
 
 
 sns.jointplot(data = customers, x = 'Avg. Session Length', y = 'Yearly Amount Spent')
@@ -96,7 +96,7 @@ sns.jointplot(data = customers, x = 'Avg. Session Length', y = 'Yearly Amount Sp
 
 # ## Time on App vs Yearly Amount Spent
 
-# In[17]:
+# In[11]:
 
 
 sns.jointplot(data = customers, x = 'Time on App', y = 'Yearly Amount Spent')
@@ -107,7 +107,7 @@ sns.jointplot(data = customers, x = 'Time on App', y = 'Yearly Amount Spent')
 
 # ## Time on Website vs Yearly Amount Spent
 
-# In[18]:
+# In[12]:
 
 
 sns.jointplot(data = customers, x = 'Time on Website', y = 'Yearly Amount Spent')
@@ -118,10 +118,12 @@ sns.jointplot(data = customers, x = 'Time on Website', y = 'Yearly Amount Spent'
 
 # ## Length of Membership vs Yearly Amount Spent
 
-# In[19]:
+# In[36]:
 
 
-sns.jointplot(data = customers, x = 'Length of Membership', y = 'Yearly Amount Spent')
+g = sns.jointplot(data = customers, x = 'Length of Membership', y = 'Yearly Amount Spent')
+g.fig.suptitle('Length of Membership (years) x Yearly Amount Spent ($)', weight = 'bold', fontsize = 15)
+g.fig.subplots_adjust(top=0.90)
 
 
 # * Length of Membership similar to normal distribution
@@ -323,4 +325,4 @@ coefficients
 # * Personalized communications
 # * Personalized offers
 # * Re-engage customers through marketing automation
-# * Provide Excellent Customer Service through customers' feedback (surveys, direct contact, problem resolution)
+# * Provide Excellent Customer Service (direct contact, feedback, surveys, social media monitoring) 

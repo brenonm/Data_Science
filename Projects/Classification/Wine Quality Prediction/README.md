@@ -19,7 +19,7 @@ The goal of the project is to determine if the quality of a wine can be predicte
 ## Conclusions 💯
 ![image](https://user-images.githubusercontent.com/18537100/154169810-c2fa5be3-91e7-4d03-a117-780cb771ee2a.png)
 
-The data __indicates__ that the K Nearest Neighbours algorithm used was a __good__ fit, with the following parameters:
+The data __indicates__ that the __K Nearest Neighbours__ algorithm used was a __good__ fit, with the following parameters:
 * __metric:__ 'manhattan'
 * __n_neighbours:__ 11
 * __weights:__ 'distance'

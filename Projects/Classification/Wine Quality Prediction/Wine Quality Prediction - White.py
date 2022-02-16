@@ -109,7 +109,7 @@ plt.figure(figsize=(15,5))
 sns.countplot(data = wine, x = 'quality', order = wine['quality'].value_counts().index)
 
 
-# In[12]:
+# In[11]:
 
 
 wine['quality'].value_counts()
@@ -117,37 +117,37 @@ wine['quality'].value_counts()
 
 # ## New Variable: Wine Quality
 
-# In[13]:
+# In[12]:
 
 
 white = wine.copy()
 
 
-# In[14]:
+# In[13]:
 
 
 white['wine_quality'] = np.where(white['quality'] > 6, 1, 0)
 
 
-# In[15]:
+# In[14]:
 
 
 white.head()
 
 
-# In[16]:
+# In[15]:
 
 
 sns.countplot(data = white, x = 'wine_quality')
 
 
-# In[17]:
+# In[16]:
 
 
 white.drop('quality', axis = 1, inplace = True)
 
 
-# In[18]:
+# In[17]:
 
 
 white.head()
@@ -155,7 +155,7 @@ white.head()
 
 # ### Fixed Acidity vs Wine Quality
 
-# In[19]:
+# In[18]:
 
 
 plt.figure(figsize=(15,5))
@@ -166,7 +166,7 @@ sns.histplot(data = white, x = 'fixed acidity', hue = 'wine_quality')
 
 # ### Volatile Acidity vs Wine Quality
 
-# In[20]:
+# In[19]:
 
 
 plt.figure(figsize=(15,5))
@@ -177,7 +177,7 @@ sns.histplot(data = white, x = 'volatile acidity', hue = 'wine_quality')
 
 # ### Citric Acid vs Wine Quality
 
-# In[21]:
+# In[20]:
 
 
 plt.figure(figsize=(15,5))
@@ -188,7 +188,7 @@ sns.histplot(data = white, x = 'citric acid', hue = 'wine_quality')
 
 # ### Residual Sugar vs Wine Quality
 
-# In[22]:
+# In[21]:
 
 
 plt.figure(figsize=(15,5))
@@ -199,7 +199,7 @@ sns.histplot(data = white, x = 'residual sugar', hue = 'wine_quality')
 
 # ### Chlorides vs Wine Quality
 
-# In[23]:
+# In[22]:
 
 
 plt.figure(figsize=(15,5))
@@ -210,7 +210,7 @@ sns.histplot(data = white, x = 'chlorides', hue = 'wine_quality')
 
 # ### Free Sulfur Dioxide vs Wine Quality
 
-# In[24]:
+# In[23]:
 
 
 plt.figure(figsize=(15,5))
@@ -221,7 +221,7 @@ sns.histplot(data = white, x = 'free sulfur dioxide', hue = 'wine_quality')
 
 # ### Total Sulfur Dioxide vs Wine Quality
 
-# In[25]:
+# In[24]:
 
 
 plt.figure(figsize=(15,5))
@@ -232,7 +232,7 @@ sns.histplot(data = white, x = 'total sulfur dioxide', hue = 'wine_quality')
 
 # ### Density vs Wine Quality
 
-# In[26]:
+# In[25]:
 
 
 plt.figure(figsize=(15,5))
@@ -243,7 +243,7 @@ sns.histplot(data = white, x = 'density', hue = 'wine_quality')
 
 # ### pH vs Wine Quality
 
-# In[27]:
+# In[26]:
 
 
 plt.figure(figsize=(15,5))
@@ -254,7 +254,7 @@ sns.histplot(data = white, x = 'pH', hue = 'wine_quality')
 
 # ### Sulphates vs Wine Quality
 
-# In[28]:
+# In[27]:
 
 
 plt.figure(figsize=(15,5))
@@ -265,7 +265,7 @@ sns.histplot(data = white, x = 'sulphates', hue = 'wine_quality')
 
 # ### Alcohol vs Wine Quality
 
-# In[29]:
+# In[28]:
 
 
 plt.figure(figsize=(15,5))
@@ -276,7 +276,7 @@ sns.histplot(data = white, x = 'alcohol', hue = 'wine_quality')
 
 # ## Variable Correlation
 
-# In[30]:
+# In[29]:
 
 
 plt.figure(figsize=(15,8))
@@ -285,7 +285,7 @@ sns.heatmap(data = white.corr(), annot = True)
 
 # ### Alcohol vs Density
 
-# In[31]:
+# In[30]:
 
 
 plt.figure(figsize=(15,5))
@@ -294,37 +294,37 @@ sns.jointplot(data = white, x = 'alcohol', y = 'density', hue = 'wine_quality')
 
 # # Normalizing Variables
 
-# In[32]:
+# In[31]:
 
 
 from sklearn.preprocessing import StandardScaler
 
 
-# In[33]:
+# In[32]:
 
 
 scaler = StandardScaler()
 
 
-# In[34]:
+# In[33]:
 
 
 scaler.fit(white.drop('wine_quality', axis = 1))
 
 
-# In[35]:
+# In[34]:
 
 
 scaled_features = scaler.transform(white.drop('wine_quality', axis = 1))
 
 
-# In[36]:
+# In[35]:
 
 
 white_feat = pd.DataFrame(data = scaled_features, columns = white.columns[:-1])
 
 
-# In[37]:
+# In[36]:
 
 
 white_feat.head()
@@ -332,20 +332,20 @@ white_feat.head()
 
 # # Training and Testing Data
 
-# In[38]:
+# In[37]:
 
 
 from sklearn.model_selection import train_test_split
 
 
-# In[39]:
+# In[38]:
 
 
 X = white_feat
 y = white['wine_quality']
 
 
-# In[40]:
+# In[39]:
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=101)
@@ -353,7 +353,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 
 # ## Training the Model
 
-# In[41]:
+# In[40]:
 
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -361,13 +361,13 @@ from sklearn.neighbors import KNeighborsClassifier
 
 # ### k = 1
 
-# In[42]:
+# In[41]:
 
 
 model = KNeighborsClassifier(n_neighbors = 1)
 
 
-# In[43]:
+# In[42]:
 
 
 model.fit(X_train, y_train)
@@ -375,7 +375,7 @@ model.fit(X_train, y_train)
 
 # ## Predicting Test Data
 
-# In[44]:
+# In[43]:
 
 
 pred = model.predict(X_test)
@@ -383,13 +383,13 @@ pred = model.predict(X_test)
 
 # ## Evaluating the Model
 
-# In[45]:
+# In[44]:
 
 
 from sklearn.metrics import confusion_matrix, classification_report
 
 
-# In[46]:
+# In[45]:
 
 
 print(confusion_matrix(y_test, pred))
@@ -399,19 +399,21 @@ print(classification_report(y_test, pred))
 
 # ## Apply Elbow Method to Discover Optimal k Value
 
-# In[47]:
+# ### Metric: Euclidean / Weights: Uniform
+
+# In[66]:
 
 
 error_rate = []
 
 for i in range(1,50):
-    model = KNeighborsClassifier(n_neighbors = i )
+    model = KNeighborsClassifier(n_neighbors = i)
     model.fit(X_train, y_train)
     pred = model.predict(X_test)
     error_rate.append(np.mean(pred != y_test))
 
 
-# In[48]:
+# In[67]:
 
 
 plt.figure(figsize = (12,5))
@@ -426,57 +428,134 @@ plt.xlabel('K')
 plt.ylabel('Error Rate')
 
 
-# ## GridSearchCV
-
-# In[49]:
+# In[68]:
 
 
-from sklearn.model_selection import GridSearchCV
+error_rate[9]
 
 
-# In[50]:
+# ### Metric: Euclidean / Weights: Distance
+
+# In[69]:
 
 
+error_rate = []
 
-grid_params = {
-    'n_neighbors':np.arange(1,52,2),
-    'weights':['uniform', 'distance'],
-    'metric':['euclidean', 'manhattan']   
-}
-
-gs = GridSearchCV(KNeighborsClassifier(), grid_params, verbose = 1, cv = 3, n_jobs = -1)
-gs_results = gs.fit(X_train, y_train)
+for i in range(1,50):
+    model = KNeighborsClassifier(n_neighbors = i, weights = 'distance')
+    model.fit(X_train, y_train)
+    pred = model.predict(X_test)
+    error_rate.append(np.mean(pred != y_test))
 
 
-# In[51]:
+# In[70]:
 
 
-gs_results.best_score_
+plt.figure(figsize = (12,5))
+plt.plot(range(1,50), error_rate, color='blue',
+         linestyle = 'dashed',
+         marker = 'o',
+         markerfacecolor ='red',
+         markersize = 10)
 
+plt.title('Error Rate vs K Value')
+plt.xlabel('K')
+plt.ylabel('Error Rate')
+
+
+# In[71]:
+
+
+error_rate[12]
+
+
+# ### Metric: Manhattan / Weights: Uniform
+
+# In[72]:
+
+
+error_rate = []
+
+for i in range(1,50):
+    model = KNeighborsClassifier(n_neighbors = i, metric = 'manhattan')
+    model.fit(X_train, y_train)
+    pred = model.predict(X_test)
+    error_rate.append(np.mean(pred != y_test))
+
+
+# In[73]:
+
+
+plt.figure(figsize = (12,5))
+plt.plot(range(1,50), error_rate, color='blue',
+         linestyle = 'dashed',
+         marker = 'o',
+         markerfacecolor ='red',
+         markersize = 10)
+
+plt.title('Error Rate vs K Value')
+plt.xlabel('K')
+plt.ylabel('Error Rate')
+
+
+# In[74]:
+
+
+error_rate[10]
+
+
+# ### Metric: Manhattan / Weights: Distance
+
+# In[75]:
+
+
+error_rate = []
+
+for i in range(1,50):
+    model = KNeighborsClassifier(n_neighbors = i, metric= 'manhattan', weights= 'distance')
+    model.fit(X_train, y_train)
+    pred = model.predict(X_test)
+    error_rate.append(np.mean(pred != y_test))
+
+
+# In[76]:
+
+
+plt.figure(figsize = (12,5))
+plt.plot(range(1,50), error_rate, color='blue',
+         linestyle = 'dashed',
+         marker = 'o',
+         markerfacecolor ='red',
+         markersize = 10)
+
+plt.title('Error Rate vs K Value')
+plt.xlabel('K')
+plt.ylabel('Error Rate')
+
+
+# In[78]:
+
+
+error_rate[10]
+
+
+# The following combination of paramaters presented the best performance:
+# * __n_neighbours__ = 11
+# * __metric__ = 'manhattan'
+# * __weights__ = 'distance'
+# 
+
+# ## Optimal Results
 
 # In[52]:
 
 
-gs_results.best_estimator_
-
-
-# In[53]:
-
-
-gs_results.best_params_
-
-
-# ## Optimal Results
-
-# In[54]:
-
-
-model = KNeighborsClassifier(metric='manhattan', n_neighbors=35, weights='distance')
+model = KNeighborsClassifier(metric='manhattan', n_neighbors=11, weights='distance')
 model.fit(X_train, y_train)
 pred = model.predict(X_test)
 
 
-# In[55]:
+# In[53]:
 
 
 print(confusion_matrix(y_test, pred))

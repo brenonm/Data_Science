@@ -1,4 +1,4 @@
-# Retail Customer Segmentation
+# Retail Customer Segmentation 💰
 ## Project Goal 🎯
 The goal of the project is to determine if an ecommerce company could fit their customers in groups with similar caracteristics.
 

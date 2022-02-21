@@ -3,8 +3,7 @@
 The goal of the project is to determine if an ecommerce company could fit their customers in groups with similar caracteristics.
 
 ## One Diagram to Rule Them All 💍
-![image](https://user-images.githubusercontent.com/18537100/154819801-76578b91-4917-4a12-8055-74dd187aaad7.png)
-
+![image](https://user-images.githubusercontent.com/18537100/155010596-360db2b6-b033-4d47-a051-66ae7b81fdf0.png)
 ## Project Insights 🔍
 * Customers could be well separated into __2__ clusters using __Yearly Amount Spent:__
   * Cluster 1 represents customers who spend in a range of 0.1 to 0.5

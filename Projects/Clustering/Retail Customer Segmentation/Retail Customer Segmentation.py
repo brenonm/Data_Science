@@ -58,13 +58,13 @@ customers_original = customers.copy()
 
 # # Variable Information
 
-# In[8]:
+# In[7]:
 
 
 customers.info()
 
 
-# In[9]:
+# In[8]:
 
 
 customers.describe()
@@ -72,7 +72,7 @@ customers.describe()
 
 # # Check Missing or Duplicated Data
 
-# In[10]:
+# In[9]:
 
 
 sns.heatmap(data = customers.isnull(), yticklabels = False, cbar = False, cmap = 'viridis')
@@ -80,7 +80,7 @@ sns.heatmap(data = customers.isnull(), yticklabels = False, cbar = False, cmap =
 
 # * No missing data
 
-# In[12]:
+# In[10]:
 
 
 customers.duplicated().value_counts()
@@ -92,7 +92,7 @@ customers.duplicated().value_counts()
 
 # ## Email
 
-# In[14]:
+# In[11]:
 
 
 customers['Email'].value_counts()
@@ -100,7 +100,7 @@ customers['Email'].value_counts()
 
 # * Varible will need feature engineering to generate insights
 
-# In[16]:
+# In[12]:
 
 
 customers.drop('Email', axis = 1, inplace = True)
@@ -108,7 +108,7 @@ customers.drop('Email', axis = 1, inplace = True)
 
 # ## Address
 
-# In[19]:
+# In[13]:
 
 
 customers['Address'].value_counts()
@@ -116,7 +116,7 @@ customers['Address'].value_counts()
 
 # * Varible will need feature engineering to generate insights
 
-# In[20]:
+# In[14]:
 
 
 customers.drop('Address', axis = 1, inplace = True)
@@ -124,7 +124,7 @@ customers.drop('Address', axis = 1, inplace = True)
 
 # ## Avatar
 
-# In[21]:
+# In[15]:
 
 
 customers['Avatar'].value_counts()
@@ -132,7 +132,7 @@ customers['Avatar'].value_counts()
 
 # * Varible will need feature engineering to generate insights
 
-# In[22]:
+# In[16]:
 
 
 customers.drop('Avatar', axis = 1 , inplace = True)
@@ -140,7 +140,7 @@ customers.drop('Avatar', axis = 1 , inplace = True)
 
 # ## Variable Correlation
 
-# In[24]:
+# In[17]:
 
 
 plt.figure(figsize=(20,8))
@@ -149,37 +149,37 @@ sns.heatmap(data = customers.corr(), annot = True)
 
 # # Normalizing Variables
 
-# In[31]:
+# In[18]:
 
 
 from sklearn.preprocessing import MinMaxScaler
 
 
-# In[32]:
+# In[19]:
 
 
 scaler = MinMaxScaler()
 
 
-# In[33]:
+# In[20]:
 
 
 scaler.fit(customers)
 
 
-# In[34]:
+# In[21]:
 
 
 scaled_features = scaler.transform(customers)
 
 
-# In[35]:
+# In[22]:
 
 
 customers_feat = pd.DataFrame(data = scaled_features, columns = customers.columns)
 
 
-# In[36]:
+# In[23]:
 
 
 customers_feat.head()
@@ -187,7 +187,7 @@ customers_feat.head()
 
 # # Training the Model
 
-# In[25]:
+# In[24]:
 
 
 from sklearn.cluster import KMeans
@@ -195,31 +195,31 @@ from sklearn.cluster import KMeans
 
 # ## Clusters = 2
 
-# In[37]:
+# In[25]:
 
 
 model = KMeans(n_clusters = 2)
 
 
-# In[38]:
+# In[26]:
 
 
 model.fit(customers_feat)
 
 
-# In[39]:
+# In[27]:
 
 
 model.cluster_centers_
 
 
-# In[40]:
+# In[28]:
 
 
 model.labels_
 
 
-# In[41]:
+# In[29]:
 
 
 model.inertia_
@@ -227,7 +227,7 @@ model.inertia_
 
 # ## Apply Elbow Method por Optimal Number of Clusters
 
-# In[47]:
+# In[30]:
 
 
 inert = []
@@ -237,7 +237,7 @@ for i in range(1, 11):
     inert.append(model.inertia_)
 
 
-# In[48]:
+# In[31]:
 
 
 plt.figure(figsize=(15,5))
@@ -248,7 +248,7 @@ plt.ylabel('Inertia')
 plt.show()
 
 
-# In[50]:
+# In[32]:
 
 
 inert
@@ -256,27 +256,107 @@ inert
 
 # ## Visualizing the Clusters
 
-# In[58]:
+# In[33]:
 
 
 model = KMeans(n_clusters = 2)
 
 
-# In[59]:
+# In[34]:
 
 
 customers_feat['Cluster'] = model.fit_predict(customers_feat)
 customers_feat['Cluster'] = customers_feat['Cluster'].astype('category')
 
 
-# In[62]:
+# In[35]:
 
 
 customers_feat.head()
 
 
-# In[66]:
+# ## Clusters by Features
+
+# In[59]:
 
 
-sns.catplot(data = customers_feat, x = 'Yearly Amount Spent', y = 'Cluster', kind = 'boxen')
+fig, axes = plt.subplots(2,3, figsize = (18,10))
 
+fig.suptitle('Clusters by Features', fontsize = 20)
+
+sns.boxenplot(data = customers_feat,
+            x = 'Avg. Session Length',
+            y = 'Cluster',
+            ax = axes[0,0])
+
+sns.boxenplot(data = customers_feat,
+            x = 'Time on App',
+            y = 'Cluster',
+            ax = axes[0,1])
+
+sns.boxenplot(data = customers_feat,
+            x = 'Time on Website',
+            y = 'Cluster',
+            ax = axes[0,2])
+
+sns.boxenplot(data = customers_feat,
+            x = 'Length of Membership',
+            y = 'Cluster',
+            ax = axes[1,0])
+
+sns.boxenplot(data = customers_feat,
+            x = 'Yearly Amount Spent',
+            y = 'Cluster',
+            ax = axes[1,1])
+
+
+# ## Yearly Amount Spent vs Cluster
+
+# In[42]:
+
+
+sns.catplot(data = customers_feat,
+            x = 'Yearly Amount Spent',
+            y = 'Cluster',
+            kind = 'boxen')
+plt.title('Yearly Amount Spent vs Cluster', fontsize = 20)
+
+
+# ## Time on App vs Cluster
+
+# In[45]:
+
+
+sns.catplot(data = customers_feat,
+            x = 'Time on App',
+            y = 'Cluster',
+            kind = 'boxen')
+plt.title('Time on App vs Cluster', fontsize = 20)
+
+
+# ## Time on Website vs Cluster
+
+# In[54]:
+
+
+sns.boxenplot(data = customers_feat,
+            x = 'Time on Website',
+            y = 'Cluster'
+             )
+plt.title('Time on Website vs Cluster', fontsize = 20)
+
+
+# ## Conclusions 💯
+# * The data __indicates__ that the company could develop different strategies for __customer targeting__ based on __Yearly Amount Spent__, such as:
+#  
+#  1) Focus on customers who spend __less__:  
+#     
+#     1.1) __Free shipping__  
+#     1.2) __Progressive discounts__  
+#     1.3) __Increase payment options__  
+#  
+#  2) Focus on customers who spend __more__:
+#  
+#     2.1) __Offer similar products through email marketing__  
+#     2.2) __Offer in-cart complementary products__ (E.g: customer adds a shirt, receives recommendation for a pair of pants)  
+#     2.3) __Develop Loyalty Program to maintain/increase high value customers' engagement__

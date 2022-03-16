@@ -58,13 +58,13 @@ customers_original = customers.copy()
 
 # # Variable Information
 
-# In[7]:
+# In[6]:
 
 
 customers.info()
 
 
-# In[8]:
+# In[7]:
 
 
 customers.describe()
@@ -72,7 +72,7 @@ customers.describe()
 
 # # Check Missing or Duplicated Data
 
-# In[9]:
+# In[8]:
 
 
 sns.heatmap(data = customers.isnull(), yticklabels = False, cbar = False, cmap = 'viridis')
@@ -80,7 +80,7 @@ sns.heatmap(data = customers.isnull(), yticklabels = False, cbar = False, cmap =
 
 # * No missing data
 
-# In[10]:
+# In[9]:
 
 
 customers.duplicated().value_counts()
@@ -89,6 +89,27 @@ customers.duplicated().value_counts()
 # * No duplicated data
 
 # # Exploratory Data Analysis - EDA
+
+# ## Response Variable - Yearly Amount Spent
+
+# In[11]:
+
+
+plt.figure(figsize=(15,5))
+sns.histplot(data = customers['Yearly Amount Spent'], kde = True)
+
+
+# In[20]:
+
+
+spent_mean = round(customers['Yearly Amount Spent'].mean(),2)
+spent_median = round(customers['Yearly Amount Spent'].median(),2)
+spent_std = round(customers['Yearly Amount Spent'].std(),2)
+print(f'Yearly Amount Spent mean: {spent_mean}')
+print(f'Yearly Amount Spent median: {spent_median}')
+print(f'Yearly Amount Spent standard deviation: {spent_std}')
+print(f'95% of Yearly Amount Spent between {spent_mean - (2 * spent_std)} and {round(spent_mean + (2 * spent_std),2)}')
+
 
 # ## Email
 

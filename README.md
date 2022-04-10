@@ -1,15 +1,16 @@
-# Hi 😄, I'm Breno
-## I'm an aspiring  Data Scientist who wishes to solve problems using data! A modern Sherlock Holmes 🔍, I would say!
-I've been making some interesting projects, take a look:
-* __Clicked on Advertisement Prediction__ 📣
-* __Ecommerce Yearly Amount Spent Prediction__ 🤑
-* __Wine Quality Predction__ 🍷
-* __Customer Segmentation__ 💰
+# Olá! Eu sou o Breno 😄
+## Sou um aspirante a Cientista de dados que deseja resolver problemas usando dados! Um Sherlock Holmes 🔍 moderno, eu diria!
+Eu estive fazendo projetos interessantes, dá só uma olhada:
+* __Predição de Cliques em Rede Social__ 📣
+* __Predição de Gastos Anuais em Compras Online__ 🤑
+* __Sommelier Digital__ 🍷
+* __Segmentação de Consumidores__ 💰
 
 
-Find me at:  
-🔵[LinkedIn](https://www.linkedin.com/in/breno-marcolino/)
+Meus projetos:  
+👉[Portfolio](https://brenonm.github.io/Portfolio/)  
+Meu contato:  
+🔵[LinkedIn](https://www.linkedin.com/in/brenonmarcolino/)
 
 
-**_"There is nothing more deceptive than an obvious fact."_**  
-Sherlock Holmes
+__Obrigado pela visita 😊__
